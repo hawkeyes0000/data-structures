@@ -1,14 +1,3 @@
-/*
-    Given a doubly linked list containing n nodes. The problem is to reverse every group of k nodes in the list.
-    
-    Input : 
-    DLL: 10<->8<->4<->2 k = 2 
-    Output : 8<->1O<->2<->4 
-        
-    Input : 1<->2<->3<->4<->5<->6<->7<->8 k = 3 
-    Output : 3< - >2< - >1< - >6< - >5< - >4< - >8< - >7 
-*/
-
 #include <iostream>
 using namespace std;
 
@@ -16,7 +5,7 @@ typedef struct Node
 {
     Node* next = NULL;
     Node* prev = NULL;
-    char int = 0;
+    int data = 0;
 }Node;
 
 Node* get_node()
@@ -26,7 +15,7 @@ Node* get_node()
 }
 
 // insert in the beginning
-void insert_node(Node** head, char data)
+void insert_node(Node** head, int data)
 {
     Node* newNode = get_node();
     if(!(*head))
@@ -56,11 +45,6 @@ void print_list(Node** head)
 
 Node* reverse(Node** head, int k)
 {
-    if(!(*head))
-    {
-        cout << "Empty LL!" << endl;
-        return;
-    }
     int count = 0;
     Node* current = (*head);
     Node* next = NULL;
@@ -75,27 +59,29 @@ Node* reverse(Node** head, int k)
         current = next;
         ++count;
     }
+    previous->prev = NULL;
     if(next != NULL)
     {
-        Node* nextHead = reverse(next, k);    
-        nextHead->prev = (*head);
-        current->next = nextHead;
-        
+        Node* newNode = reverse(&next, k);
+        (*head)->next = newNode;
+        newNode->prev = (*head);
     }
-    
+
+    (*head) = previous;
     return (*head);
 }
 
 int main() 
 {
-	Node* head;
+	Node* head = NULL;
 	insert_node(&head, 2);
 	insert_node(&head, 4);
 	insert_node(&head, 8);
 	insert_node(&head, 10);
-	
-    int k = 2;
-    reverse(&head, k);
-    print_list(&head);
+	insert_node(&head, 100);
+	print_list(&head);
+	int k = 2;
+	reverse(&head, k);
+	print_list(&head);
 	return 0;
 }
