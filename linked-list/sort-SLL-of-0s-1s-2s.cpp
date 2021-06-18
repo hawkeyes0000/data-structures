@@ -22,6 +22,9 @@
 
 */
 
+// The approach doesn't actually sort the nodes, but changes their values. For a proper "sort", moves the zero-valued nodes to front, and two-valued to the end. 
+// Don't move one-valued nodes.
+
 class Solution
 {
     public:
