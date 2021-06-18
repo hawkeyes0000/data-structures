@@ -54,3 +54,33 @@ class Solution
             return -1;
     }
 }
+
+// HashMap
+class Solution
+{
+    static int majorityElement(int arr[], int size)
+    {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int i = 0; i < size; i++)
+        {
+            if(map.containsKey(arr[i]))
+            {
+                int value = map.get(arr[i]);
+                map.replace(arr[i], ++value);
+            }
+            else
+            {
+                map.put(arr[i], 1);
+            }
+        }
+        for(int i : map.keySet())
+        {
+            if(map.get(i) > size/2)
+            {
+                return i;
+            }
+        }
+        
+        return -1;
+    }
+}
