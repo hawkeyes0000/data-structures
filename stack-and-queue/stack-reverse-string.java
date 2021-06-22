@@ -10,7 +10,6 @@ class Solution {
     
     public String reverse(String S)
     {
-        int strLen = S.length();
         Stack<Character> stack = new Stack<>();
         String reversedString = "";
         
