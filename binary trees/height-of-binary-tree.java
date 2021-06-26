@@ -41,3 +41,16 @@ class Solution {
         return leftHeight > rightHeight ? leftHeight : rightHeight;
     }
 }
+
+// shorter
+class Solution {
+    //Function to find the height of a binary tree.
+    int height(Node node) 
+    {
+        if(root == null)
+        {
+            return 0;
+        }
+        return 1 + Math.max(height(root.left), height(root.right));
+    }
+}
