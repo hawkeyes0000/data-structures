@@ -7,6 +7,7 @@
 
 */
 
+// ITERATIVE APPROACH
 class Solution
 {
     //Function to return Breadth First Traversal of given graph.
@@ -31,5 +32,40 @@ class Solution
             }
         }       
         return bfs;
+    }
+}
+
+// RECURSIVE APPROACH
+class Solution
+{
+    //Function to return Breadth First Traversal of given graph.
+    public ArrayList<Integer> bfsOfGraph(int V,ArrayList<ArrayList<Integer>> adj)
+    {
+        boolean[] visited = new boolean[V];
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(0);
+        ArrayList<Integer> bfs = new ArrayList<>();
+        bfsRecursive(bfs, queue, visited, adj);
+        return bfs;
+    }
+    
+    static void bfsRecursive(ArrayList<Integer> bfs, Queue<Integer> queue, boolean[] visited, ArrayList<ArrayList<Integer>> adj)
+    {
+        if(queue.isEmpty())
+        {
+            return;
+        }
+        int curr = queue.poll();
+        visited[curr] = true;
+        bfs.add(curr);
+        for(int i : adj.get(curr))
+        {
+            if(!visited[i])
+            {
+                visited[i] = true;
+                queue.add(i);
+            }
+        }
+        bfsRecursive(bfs, queue, visited, adj);
     }
 }
