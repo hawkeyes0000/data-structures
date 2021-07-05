@@ -57,7 +57,7 @@ class GfG
     {
        if(s.isEmpty())
        {
-           return -1;
+           return -1 ;
        }
        return minEle;
     }
