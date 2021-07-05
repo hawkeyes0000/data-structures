@@ -18,8 +18,8 @@ class GfG{
         s.push(a);
 	}
 	public int pop(Stack<Integer> s)
-    {
-        return s.pop();
+	{
+		return s.pop();
 	}
 	public int min(Stack<Integer> s)
     {
@@ -42,3 +42,60 @@ class GfG{
         return s.isEmpty();
 	}
 }
+
+
+// ALTERNATE APPROACH WITH LINEAR TIME AND SPACE
+// While pushing, if element < min, push(2*element - m)
+// While popping, if element < min, set min = 2*min - poppedElement, and return previous min.
+class GfG
+{
+    int minEle;
+    Stack<Integer> s = new Stack<>();
+
+    /*returns min element from stack*/
+    int getMin()
+    {
+       if(s.isEmpty())
+       {
+           return -1;
+       }
+       return minEle;
+    }
+    
+    /*returns poped element from stack*/
+    int pop()
+    {
+	    if(s.isEmpty())
+	    {
+	        return -1;
+	    }
+	    int elePopped = s.pop();
+	    if(elePopped < minEle)
+	    {
+	        int tempMinEle = minEle;
+	        minEle = minEle*2 - elePopped;
+	        return tempMinEle;
+	    }
+	    return elePopped;
+    }
+
+    /*push element x into the stack*/
+    void push(int x)
+    {
+	    if(s.isEmpty())
+	    {
+	        s.push(x);
+	        minEle = x;
+	    }
+	    else if(x < minEle)
+	    {
+	        s.push(2*x - minEle);
+	        minEle = x;
+	    }
+	    else
+	    {
+	        s.push(x);
+	    }
+    }	
+}
+
