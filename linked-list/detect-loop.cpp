@@ -5,7 +5,7 @@ bool detectLoop(Node* head)
     Node* slow = head;  
     Node* fast = head;  // this will move twice as fast
 
-    while(fast != NULL && slow != NULL && fast->next != NULL)
+    while(fast != NULL && fast->next != NULL)
     {
         fast = fast->next->next;
         slow = slow->next;
