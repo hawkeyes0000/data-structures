@@ -64,7 +64,7 @@ class Solution
         if(m == 1 && n == 1)
         {
             return 1;
-        }
+		}
         if(map.containsKey(m + "," + n))
         {
             return map.get(m + "," + n);
