@@ -38,7 +38,7 @@ class Solution
     //Function to find the maximum money the thief can get.
     public int FindMaxSum(int arr[], int n)
     {
-        int[] dp = new int[10001];
+        int[] dp = new int[n];
         int ans = Math.max(FindMaxSumUtil(arr, n, 0, dp), FindMaxSumUtil(arr, n, 1, dp));
         return ans;
     }
