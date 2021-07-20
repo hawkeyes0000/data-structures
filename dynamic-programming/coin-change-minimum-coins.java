@@ -32,14 +32,14 @@ class Solution
 	{ 
         int[] minV = new int[V+1];
         Arrays.fill(minV, Integer.MAX_VALUE);
-        minV[0] = 0;
-        for(int i = 0; i < M; i++)
+        minV[0] = 0;	// maintains the minimum coins required to make ith amount
+        for(int i = 0; i < M; i++)	// traverses each coin
         {
-            for(int j = 1; j <= V; j++)
+            for(int j = 1; j <= V; j++)	// traverses 1 to V for each coin
             {
-                if(coins[i] <= j)
+                if(coins[i] <= j)	// if the coin value is less current sum
                 {
-                    int diff = minV[j - coins[i]];
+                    int diff = minV[j - coins[i]];	
                     if(diff != Integer.MAX_VALUE && diff + 1 < minV[j])
                     {
                         minV[j] = diff + 1;
