@@ -87,17 +87,24 @@ class MinHeap
             System.out.print("Invalid operation!");
             return;
         }
-        size--;
-        if(size != 0)
-        {
-            arr[index] = arr[size];
-            heapify(index);
-        }
+        this.decreaseKey(index, Integer.MIN_VALUE);
+        this.extractMin();
+        // size--;
+        // if(size != 0)
+        // {
+        //     arr[index] = arr[size];
+        //     heapify(index);
+        // }
     }
     
-    void printHeap()
+    void printHeap(int[] arr)
     {
-        for(int i = 0; i < size; i++)
+        if(size == 0)
+        {
+            System.out.println("Empty Heap!");
+            return;
+        }
+        for(int i = 0; i < arr.length; i++)
         {
             System.out.print(arr[i] + "  ");
         }
@@ -125,8 +132,14 @@ public class Main
 		heap.insert(52);
 		heap.insert(66);
 		heap.insert(7);
-		heap.printHeap();
+		heap.printHeap(heap.arr);
 		heap.delete(4);
-		heap.printHeap();
+		heap.printHeap(heap.arr);
+		heap.delete(6);
+		heap.printHeap(heap.arr);
+		heap.delete(0);
+		heap.printHeap(heap.arr);
+		heap.insert(1);
+		heap.printHeap(heap.arr);
 	}
 }
